@@ -6,7 +6,7 @@ type HomeProps = {}
 
 const Home: FC<HomeProps> = (): ReactElement => {
     return (
-        <Flex p={4}>
+        <Flex p={4} boxShadow="md">
             <Box>
                 <img src="" alt=""/>
                 <Text color="teal" fontWeight="semibold" fontSize="lg">Cart Up</Text>
