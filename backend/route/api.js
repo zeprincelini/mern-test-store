@@ -50,6 +50,7 @@ router.post('/products', upload, (req, res, next) => {
             console.log(err)
         }
         res.send(item);
+        console.log(item);
     });
     }).catch((err) => {
         console.log(err)

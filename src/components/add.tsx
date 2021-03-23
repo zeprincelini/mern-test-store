@@ -1,4 +1,6 @@
-import { Box, FormControl, FormLabel, FormErrorMessage, VStack, Input, Button, Center, Divider, Heading } from '@chakra-ui/react';
+import { Box, FormControl, FormLabel, FormErrorMessage, 
+         VStack, Input, Button, Center, Divider, Heading,
+         Alert, AlertDescription, AlertIcon, CloseButton} from '@chakra-ui/react';
 import React, { FC, ReactElement, useState } from 'react';
 
 type AddProp = {}
@@ -22,15 +24,40 @@ const Add = () => {
         formData.append('product', product);
         formData.append('price', price);
         formData.append('img', img);
+        upload(formData);
+    }
+    let success = false;
+    let failure = false;
+    const upload = async (data: any) => {
+        await fetch('http://localhost:5000/api/products', {
+            method: 'POST',
+            body: data
+        }).then((response) => {
+            console.log(response);
+            success = true;
+        }).catch((err) => {
+            console.log(err);
+            failure = true;
+        });
     }
     
     return(
         <Box>
-            <VStack mt ={5}>
+            <VStack mt ={5} mb ={6}>
                 <Heading fontSize="xl" color="teal.400">
                     Add New Product
                 </Heading>
                 <Divider w="400px"/>
+                {success && <Alert status="success" w="400px">
+                    <AlertIcon />
+                    <AlertDescription>Product Added Successfully</AlertDescription>
+                    {/* <CloseButton position="absolute" right="8px" top="8px" /> */}
+                </Alert>}
+                {failure && <Alert status="error">
+                    <AlertIcon />
+                    <AlertDescription>Failed to add Product</AlertDescription>
+                    <CloseButton position="absolute" right="8px" top="8px" />
+                </Alert>}
                 <form encType ="multipart/form-data" onSubmit = {submit}>
                     <FormControl id="product_name" mb={2}>
                         <FormLabel>Enter Name</FormLabel>
