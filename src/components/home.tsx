@@ -2,9 +2,11 @@ import React, { FC, ReactElement } from 'react';
 import {  Box, Flex, Spacer, Text, IconButton } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 
-type HomeProps = {}
+type appProps = {
+    onClick: () => void;
+  }
 
-const Home: FC<HomeProps> = (): ReactElement => {
+const Home = ({onClick}: appProps) => {
     return (
         <Flex p={4} boxShadow="md">
             <Box>
@@ -14,7 +16,7 @@ const Home: FC<HomeProps> = (): ReactElement => {
             <Spacer/>
             <Box>
                 <IconButton bg="teal.300" aria-label="product form" icon = {<AddIcon color="white" 
-                _hover={{color: "teal"}}/>} isRound ={true}/>
+                _hover={{color: "teal"}}/>} isRound ={true} onClick ={onClick}/>
             </Box>
         </Flex>
     )

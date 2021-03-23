@@ -1,18 +1,21 @@
-import { Box, Divider } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { Box } from '@chakra-ui/react';
 import './App.css';
 import Add from './components/add';
 import Home from './components/home';
+import Product from './components/products';
 
-const toggle =(show: boolean = false) => {
-  show = !show;
-  return show;
-}
+const App = () => {
+  const [displayForm, setForm] = useState(false)
+  const showForm = () => {
+    setForm(!displayForm)
+  }
 
-function App() {
   return (
     <Box>
-       <Home/>
-       <Add/>
+       <Home onClick= {showForm}/>
+       {displayForm && <Add/>}
+       <Product />
     </Box>
   );
 }
