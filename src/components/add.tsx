@@ -34,7 +34,7 @@ const Add = () => {
     }
 
     const upload = async (data: any) => {
-        await fetch('/api/ucts', {
+        await fetch('/api/products', {
             method: 'POST',
             body: data
         }).then((response) => {
@@ -64,7 +64,6 @@ const Add = () => {
                 {failure && <Alert status="error" w="400px">
                     <AlertIcon />
                     <AlertDescription>Failed to add Product</AlertDescription>
-                    <CloseButton position="absolute" right="8px" top="8px" />
                 </Alert>}
                 <form encType ="multipart/form-data" onSubmit = {submit}>
                     <FormControl id="product_name" mb={2}>
