@@ -12,12 +12,16 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json()); 
-app.use(express.static(path.join(__dirname, '../build')));
 app.use('/api', api);
 
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
-});
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static(path.join(__dirname, '../build')));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
+    });
+}
+
 
 app.listen(PORT, () => {
     console.log('running on port: ', PORT);
