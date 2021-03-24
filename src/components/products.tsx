@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react'
 import { SimpleGrid, Box, Text, Image, Flex, Spacer, Button, Heading } from "@chakra-ui/react";
 
-const Product = () => {
-const [items, setItems] = useState<any>([])
+type ProductProp = {
+    reloader: number
+}
+
+const Product = ({reloader}: ProductProp) => {
+const [items, setItems] = useState<any>([]);
+
 useEffect(() => {
     const fetchProducts = async () => {
         const res = await fetch('/api/products');
@@ -11,7 +16,7 @@ useEffect(() => {
         console.log(data)
     }
     fetchProducts()
-}, [])
+}, [reloader])
 
     return (
         <Box p={2}>

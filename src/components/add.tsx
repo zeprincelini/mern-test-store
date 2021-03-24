@@ -1,13 +1,13 @@
 import { Box, FormControl, FormLabel, FormErrorMessage, 
          VStack, Input, Button, Center, Divider, Heading,
          Alert, AlertDescription, AlertIcon, CloseButton, useToast} from '@chakra-ui/react';
-import React, { FC, ReactElement, useState } from 'react';
+import React, { FC, ReactElement, useState, Dispatch, SetStateAction } from 'react';
 
 type AddProp = {
-    counter: number
+    counter: Dispatch<SetStateAction<number>>
 }
 
-const Add = () => {
+const Add = ({counter}: AddProp) => {
     const [product, setProduct] = useState('');
     const [price, setPrice] = useState('');
     const [img, setImg] = useState<any>(null);
@@ -43,6 +43,7 @@ const Add = () => {
             setProduct("");
             setPrice("");
             setImg(null);
+            counter(counter => counter + 1)
         }).catch((err) => {
             console.log(err);
             setFailure(true)
