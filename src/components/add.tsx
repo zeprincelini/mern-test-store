@@ -4,7 +4,7 @@ import { Box, FormControl, FormLabel, FormErrorMessage,
 import React, { FC, ReactElement, useState, Dispatch, SetStateAction } from 'react';
 
 type AddProp = {
-    counter: Dispatch<SetStateAction<number>>
+    counter: () => void
 }
 
 const Add = ({counter}: AddProp) => {
@@ -43,7 +43,7 @@ const Add = ({counter}: AddProp) => {
             setProduct("");
             setPrice("");
             setImg(null);
-            counter(refresh => refresh + 1)
+            counter();
         }).catch((err) => {
             console.log(err);
             setFailure(true)

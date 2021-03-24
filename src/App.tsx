@@ -8,6 +8,9 @@ import Product from './components/products';
 const App = () => {
   const [displayForm, setForm] = useState(false)
   const [refresh, setRefresh] = useState(0);
+  const increment = () => {
+    setRefresh(refresh=> refresh + 1);
+  }
   const showForm = () => {
     setForm(!displayForm)
   }
@@ -15,7 +18,7 @@ const App = () => {
   return (
     <Box>
        <Home onClick= {showForm} />
-       {displayForm && <Add counter ={setRefresh} />}
+       {displayForm && <Add counter ={increment} />}
        <Product reloader ={refresh}/>
     </Box>
   );
