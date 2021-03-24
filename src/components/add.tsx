@@ -34,7 +34,7 @@ const Add = () => {
     }
 
     const upload = async (data: any) => {
-        await fetch('/api/products', {
+        await fetch('/api/ucts', {
             method: 'POST',
             body: data
         }).then((response) => {
