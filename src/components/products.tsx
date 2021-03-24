@@ -11,7 +11,7 @@ useEffect(() => {
         console.log(data)
     }
     fetchProducts()
-}, [items])
+}, [])
 
     return (
         <Box p={2}>
