@@ -23,7 +23,7 @@ useEffect(() => {
             <SimpleGrid columns={{sm: 1, md: 3, lg: 4}} spacing={10}>
                 {items.map((product: any) => (
                     <Box key ={product.id} boxShadow="base" p={3}>
-                        <Image src={product.path} alt="" h="200px" w="full" />
+                        <Image src={product.path} alt="" w="full" />
                         <Flex p={3}>
                             <Heading fontSize="lg">{product.name}</Heading>
                             <Spacer />
