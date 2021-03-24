@@ -52,7 +52,7 @@ const Add = ({counter}: AddProp) => {
     
     return(
         <Box>
-            <VStack mt ={5} mb ={6} border="1px" boxShadow="sm">
+            <VStack mt ={5} mb ={6}>
                 <Heading fontSize="xl" color="teal.400">
                     Add New Product
                 </Heading>
