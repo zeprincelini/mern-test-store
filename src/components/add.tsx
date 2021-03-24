@@ -1,14 +1,20 @@
 import { Box, FormControl, FormLabel, FormErrorMessage, 
          VStack, Input, Button, Center, Divider, Heading,
-         Alert, AlertDescription, AlertIcon, CloseButton} from '@chakra-ui/react';
+         Alert, AlertDescription, AlertIcon, CloseButton, useToast} from '@chakra-ui/react';
 import React, { FC, ReactElement, useState } from 'react';
 
-type AddProp = {}
+type AddProp = {
+    counter: number
+}
 
 const Add = () => {
     const [product, setProduct] = useState('');
     const [price, setPrice] = useState('');
     const [img, setImg] = useState<any>(null);
+
+    const [success, setSuccess] = useState(false);
+    const [failure, setFailure] = useState(false);
+    const toast = useToast();
     
     const handler = (e:any) => {
         setImg(e.target.files[0])
@@ -26,18 +32,20 @@ const Add = () => {
         formData.append('img', img);
         upload(formData);
     }
-    let success = false;
-    let failure = false;
+
     const upload = async (data: any) => {
         await fetch('http://localhost:5000/api/products', {
             method: 'POST',
             body: data
         }).then((response) => {
             console.log(response);
-            success = true;
+            setSuccess(true);
+            setProduct("");
+            setPrice("");
+            setImg(null);
         }).catch((err) => {
             console.log(err);
-            failure = true;
+            setFailure(true)
         });
     }
     
@@ -50,10 +58,10 @@ const Add = () => {
                 <Divider w="400px"/>
                 {success && <Alert status="success" w="400px">
                     <AlertIcon />
-                    <AlertDescription>Product Added Successfully</AlertDescription>
+                    <AlertDescription>Product added successfully</AlertDescription>
                     {/* <CloseButton position="absolute" right="8px" top="8px" /> */}
                 </Alert>}
-                {failure && <Alert status="error">
+                {failure && <Alert status="error" w="400px">
                     <AlertIcon />
                     <AlertDescription>Failed to add Product</AlertDescription>
                     <CloseButton position="absolute" right="8px" top="8px" />

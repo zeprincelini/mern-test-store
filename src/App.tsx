@@ -13,7 +13,7 @@ const App = () => {
 
   return (
     <Box>
-       <Home onClick= {showForm}/>
+       <Home onClick= {showForm} />
        {displayForm && <Add/>}
        <Product />
     </Box>
