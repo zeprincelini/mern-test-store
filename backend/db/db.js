@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 //atlas   "mongodb+srv://Lini:" + process.env.dbpass + "@cluster-commerce.vu9tf.mongodb.net/lekkify?retryWrites=true&w=majority"
+// local    "mongodb://localhost:27017/lekkify-react"
 const DB = async () => {
     try{
-        const conn = await mongoose.connect("mongodb://localhost:27017/lekkify-react",{
+        const conn = await mongoose.connect("mongodb+srv://Lini:" + process.env.dbpass +"@cluster0.y9grq.mongodb.net/lekkify-react?retryWrites=true&w=majority",{
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false
@@ -14,3 +15,4 @@ const DB = async () => {
     }
 }
 module.exports = DB;
+
