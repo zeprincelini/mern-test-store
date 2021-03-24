@@ -43,7 +43,7 @@ const Add = ({counter}: AddProp) => {
             setProduct("");
             setPrice("");
             setImg(null);
-            counter(counter => counter + 1)
+            counter(refresh => refresh + 1)
         }).catch((err) => {
             console.log(err);
             setFailure(true)
